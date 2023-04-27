@@ -201,8 +201,8 @@ ant_table.1 <- gc_out.1 %>%
                                                         sample== c("H4","H5","H6")~"Ant14_15",
                                                         sample== c("G7","G8","G9")~"Ant15_7.5",
                                                         sample== c("H7","H8","H9")~"Ant15_15", sample== c("G10","G11","G12","H10","H11", "H12") ~ "Control")) %>%
-  filter(note != "questionable fit (k < n0)", note != "questionable fit") %>%
-  group_by(ant_name) %>% summarize(avg_growth_rate = mean(r), avg_carry_cap = mean(k))
+  #filter(note != "questionable fit (k < n0)", note != "questionable fit") %>%
+  group_by(ant_name) %>% summarize(avg_growth_rate = median(r), avg_carry_cap = median(k))
  
 
 
@@ -238,7 +238,7 @@ ant_table.2 <- gc_out.2 %>%
                                                         sample== c("H4","H5","H6")~"Ant14_15",
                                                         sample== c("G7","G8","G9")~"Ant15_7.5",
                                                         sample== c("H7","H8","H9")~"Ant15_15", sample== c("G10","G11","G12","H10","H11", "H12") ~ "Control"))%>%
-filter(note != "questionable fit (k < n0)", note != "questionable fit") %>%
+
   group_by(ant_name) %>% summarize(avg_growth_rate = mean(r), avg_carry_cap = mean(k))
 
 
@@ -275,7 +275,7 @@ ant_table.3 <- gc_out.3 %>%
                                                         sample== c("H4","H5","H6")~"Ant14_15",
                                                         sample== c("G7","G8","G9")~"Ant15_7.5",
                                                         sample== c("H7","H8","H9")~"Ant15_15", sample== c("G10","G11","G12","H10","H11", "H12") ~ "Control"))%>%
-  filter(note != "questionable fit (k < n0)", note != "questionable fit") %>%
+  #filter(note != "questionable fit (k < n0)", note != "questionable fit") %>%
   group_by(ant_name) %>% summarize(avg_growth_rate = mean(r), avg_carry_cap = mean(k))
 
 
@@ -310,8 +310,14 @@ ant_table.4 <- gc_out.4 %>%
                                                         sample== c("H4","H5","H6")~"Ant14_15",
                                                         sample== c("G7","G8","G9")~"Ant15_7.5",
                                                         sample== c("H7","H8","H9")~"Ant15_15", sample== c("G10","G11","G12","H10","H11", "H12") ~ "Control"))%>%
-filter(note != "questionable fit (k < n0)", note != "questionable fit")%>% 
+#filter(note != "questionable fit (k < n0)", note != "questionable fit")%>% 
   group_by(ant_name) %>% summarize(avg_growth_rate = mean(r), avg_carry_cap = mean(k))
 
 
+
+library(writexl)
+write_xlsx(ant_table.1, "ant_tab1.xlsx")
+write_xlsx(ant_table.2, "ant_tab2.xlsx")
+write_xlsx(ant_table.3, "ant_tab3.xlsx")
+write_xlsx(ant_table.4,"ant_tab4.xlsx")
 
